@@ -18,7 +18,7 @@ export default function Nonfollow({ nonfollow ,setUpdate}) {
 
 
     const addfollow = async () => {
-        const res = await fetch('http://localhost:1000/vacations/addfollow', {
+        const res = await fetch('http://localhost:5000/api/vacations/addfollow', {
             method: "post",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ user_id: localStorage.id, vacations_id: nonfollow.id }),

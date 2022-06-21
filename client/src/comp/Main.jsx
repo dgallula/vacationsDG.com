@@ -13,7 +13,8 @@ export default function Main() {
                 <Route path="/" element={<Vacations />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/chart" element={<CharAdmin />} />
+                <Route path="/charAdmin" element={<CharAdmin />} />
+                <Route path="/vacations" element={<Vacations />} />
             </Routes>
         </div>
     )

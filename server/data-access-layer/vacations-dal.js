@@ -25,7 +25,7 @@ const getAllVacationsFollowed = async () => {
   try {
     let getAllResult = await connection
       .promise()
-      .query("SELECT * FROM vacations join follow");
+      .query("SELECT * FROM followedVacations");
     vacationsResult.success = true;
     vacationsResult.data = getAllResult[0];
   } catch (error) {
@@ -55,7 +55,7 @@ const getAllFollowers = async () => {
   try {
     let followersResult = await connection
       .promise()
-      .query(`SELECT followers FROM follow`);
+      .query(`SELECT * FROM followersNumbers`);
     vacationsResult.success = true;
     vacationsResult.data = followersResult[0];
   } catch (error) {
@@ -94,7 +94,7 @@ const anddNewVacation = async (newVacation) => {
 const addNewFollowerToDB = async (userId, vacationId) => {
   try {
     let postFollowerResult = await connection.promise()
-      .query(`INSERT INTO follow  (userId, vacationId)
+      .query(`INSERT INTO followersNumbers  (userId, vacationId)
       VALUES
        ('${userId}', '${vacationId}')`);
     vacationsResult.success = true;

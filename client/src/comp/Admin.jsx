@@ -6,6 +6,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import {serverApi} from "../utils/routes";
 
 export default function Admin({ setVacations, vacations }) {
 
@@ -19,7 +20,7 @@ export default function Admin({ setVacations, vacations }) {
     const [dateUntil, setDateUntil] = useState("");
 
     const addVacation = async () => {
-        const res = await fetch('http://localhost:1000/admin', {
+        const res = await fetch(serverApi.addVacation, {
             method: "post",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ descriptions, country, cityName, price, img, dateFrom, dateUntil }),

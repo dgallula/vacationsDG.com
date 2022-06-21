@@ -9,11 +9,12 @@ import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { serverApi } from '../utils/routes';
 
 
 /////////////=========== Page for Admin edit and delete vacations==============///////////////
 
-export default function AdminCard({ vaca, setUpdate1 }) {
+export default function AdminCard({ vacation, setUpdate1 }) {
 
 
     const [descriptions, setDescriptions] = useState("");
@@ -26,7 +27,7 @@ export default function AdminCard({ vaca, setUpdate1 }) {
     const [msg, setmsg] = useState("");
 
     const delvacations = async () => {
-        const res = await fetch(`http://localhost:1000/admin/${vaca.id}`, {
+        const res = await fetch(serverApi.delvacation, {
             method: "DELETE",
             headers: { 'content-type': 'application/json; charset=UTF-8' },
             credentials: "include"
@@ -36,10 +37,10 @@ export default function AdminCard({ vaca, setUpdate1 }) {
 
 
     const editvacation = async () => {
-        const res1 = await fetch('http://localhost:1000/admin', {
+        const res1 = await fetch(serverApi.edivacation, {
             method: "put",
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ id: vaca.id, descriptions, country, cityName, price, img, dateFrom, dateUntil }),
+            body: JSON.stringify({ id: vacation.id, descriptions, country, cityName, price, img, dateFrom, dateUntil }),
             credentials: "include"
         })
         const data1 = await res1.json()
@@ -77,23 +78,23 @@ export default function AdminCard({ vaca, setUpdate1 }) {
                 <CardMedia
                     component="img"
                     height="140"
-                    image={vaca.img}
-                    alt={vaca.cityName}
+                    image={vacation.img}
+                    alt={vacation.cityName}
                 />
 
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {vaca.cityName}, {vaca.country}
+                        {vacation.cityName}, {vacation.country}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="div">
-                        {new Date(vaca.dateFrom).toLocaleDateString('he-IL')} - {new Date(vaca.dateUntil).toLocaleDateString('he-IL')}
+                        {new Date(vacation.dateFrom).toLocaleDateString('he-IL')} - {new Date(vacation.dateUntil).toLocaleDateString('he-IL')}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        {vaca.descriptions}
+                        {vacation.descriptions}
                     </Typography>
                     <div className='pricefollowers'>
                         <Typography variant="h5">
-                            ${vaca.price}
+                            ${vacation.price}
                         </Typography>
                         <EditIcon id="editpan" onClick={handleClick} />
                         <DeleteForeverIcon id="deletepen" onClick={delvacations} />
@@ -118,13 +119,13 @@ export default function AdminCard({ vaca, setUpdate1 }) {
                     }}
                 >
                 <span className='msg'>{msg}</span>
-                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vaca.img.toString()} label="Img" variant="outlined" size="small" onChange={e => setImg(e.target.value)} />
-                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vaca.country.toString()} label="Country" variant="outlined" size="small" onChange={e => setCountry(e.target.value)} />
-                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vaca.cityName.toString()} label="City" variant="outlined" size="small" onChange={e => setCityName(e.target.value)} />
+                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vacation.img.toString()} label="Img" variant="outlined" size="small" onChange={e => setImg(e.target.value)} />
+                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vacation.country.toString()} label="Country" variant="outlined" size="small" onChange={e => setCountry(e.target.value)} />
+                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vacation.cityName.toString()} label="City" variant="outlined" size="small" onChange={e => setCityName(e.target.value)} />
                     <TextField sx={{ m: 0.5 }} type="date" id="outlined-basic"  variant="standard" onChange={e => setDateFrom(e.target.value)} />
                     <TextField sx={{ m: 0.5 }} type="date" id="outlined-basic"  variant="standard" onChange={e => setDateUntil(e.target.value)} />
-                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vaca.descriptions.toString()} label="Descriptions" variant="outlined" size="small" onChange={e => setDescriptions(e.target.value)} />
-                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vaca.price.toString()} label="Price" variant="outlined" size="small" onChange={e => setPrice(e.target.value)} />
+                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vacation.descriptions.toString()} label="Descriptions" variant="outlined" size="small" onChange={e => setDescriptions(e.target.value)} />
+                    <TextField sx={{ m: 0.5 }} id="outlined-basic" placeholder={vacation.price.toString()} label="Price" variant="outlined" size="small" onChange={e => setPrice(e.target.value)} />
                     <Button id="btnvava" variant="contained" onClick={editvacation}>Edit Vacation</Button>
                 </Popover>
 

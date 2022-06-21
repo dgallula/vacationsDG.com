@@ -19,7 +19,7 @@ export default function VacationsCard({ vacafollow ,setUpdate }) {
     //  ====   The unfollow requets   ===   //
 
     const unfollow = async () => {
-        const res = await fetch('http://localhost:1000/vacations/delfollow', {
+        const res = await fetch('http://localhost:5000/api/vacations/delfollow', {
             method: "delete",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ user_id: localStorage.id, vacations_id: vacafollow.id }),

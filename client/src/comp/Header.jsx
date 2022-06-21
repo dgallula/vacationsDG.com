@@ -11,7 +11,7 @@ export default function Header() {
     const navigate = useNavigate()
 
     const logout = async () => {
-        const res = await fetch('http://localhost:1000/users/logout', {
+        const res = await fetch('http://localhost:5000/api/users/logout', {
             method: "delete",
             credentials: "include"
         })
@@ -38,7 +38,7 @@ export default function Header() {
                 <AppBar position="static" sx={{ bgcolor: '#ff8a80' }}>
                     <Toolbar>
                         <Typography id="headr" onClick={() => goTo("")} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Vacations
+                            Vacations.com
                         </Typography>
 
                         {

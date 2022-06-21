@@ -24,7 +24,7 @@ export default function Vacations() {
     //Get all vacations
     useEffect(() => {
         (async () => {
-            const res = await fetch('http://localhost:1000/vacations', {
+            const res = await fetch('http://localhost:5000/api/vacations', {
                 method: 'GET',
                 headers: { 'content-type': 'application/json' },
                 credentials: "include"
@@ -107,7 +107,8 @@ export default function Vacations() {
 
     return (
         <div>
-            {
+            <h1>Vacations</h1>
+            {/* {
                 !localStorage.username ?
                     <>
                         <Login />
@@ -155,7 +156,7 @@ export default function Vacations() {
                         }
 
                     </>
-            }
+            } */}
         </div>
     )
 }

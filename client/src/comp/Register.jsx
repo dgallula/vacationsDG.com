@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { serverApi } from '../utils/routes';
 
 export default function Register() {
 
@@ -16,7 +17,7 @@ export default function Register() {
     const [famliyName, setFamliyName] = useState("")
 
     const register = async () => {
-        const res = await fetch('http://localhost:1000/users/register', {
+        const res = await fetch(serverApi,register, {
             method: "post",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ username, password, name, famliyName }),

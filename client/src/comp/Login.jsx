@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-
+import {serverApi} from "../utils/routes";
 
 
 export default function Login() {
@@ -21,25 +21,36 @@ export default function Login() {
     // const [role, setRole] = useState(false)
 
     const handleClcik = async () => {
-        const res = await fetch('http://localhost:1000/users/login', {
+        let res ;
+        try{
+        res = await fetch(serverApi.login, {
             method: "post",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ username, password }),
             credentials: "include"
         })
-        const data = await res.json()
-
-        if (data.err) {
-            document.getElementById("err").innerHTML = data.err
-
-        } else {
-            localStorage.username = data.username
-            localStorage.role = data.user[0].role
-            localStorage.id = data.user[0].id
-            navigate('/')
-            window.location.reload(true);
+        console.log(await res.text());
+        if(res.status==200){
+            navigate('/vacations')
+        }else{
+            console.log("WRONG !!!!")
         }
-        console.log(data);
+    }catch(err){
+        console.log("ERR",err);
+    }
+        //const data = await res.json()
+
+        // if (data.err) {
+        //     document.getElementById("err").innerHTML = data.err
+
+        // } else {
+        //     localStorage.username = data.username
+        //     localStorage.role = data.user[0].role
+        //     localStorage.id = data.user[0].id
+        //     navigate('/')
+        //     window.location.reload(true);
+        // }
+        
 
     }
 

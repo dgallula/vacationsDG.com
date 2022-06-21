@@ -1,3 +1,37 @@
+
+
+users 
+logout(delete) 'http://localhost:5000/users/logout'
+login (post) http://localhost:5000/users/login
+register (post) http://localhost:5000/users/register
+
+
+
+admin 
+addvacations: http://localhost:5000/api/admin/addVacations'
+edit (put)'http://localhost:5000/api/admin
+delete vacation  http://localhost:5000/api/admin/${vacation.id}
+chartAdmin  http://localhost:5000/api/admin/follow'
+
+
+
+
+vacations 
+addfollow(post) http://localhost:5000/api/vacations/addfollow'
+get all vacations http://localhost:5000/api/vacations (vacations join follow)
+get vacationsfollowed by id http://localhost:5000/api/vacations/follow/${currUserId}
+get vacations by id http://localhost:5000/api/vacations/unfollow/${currUserId}`
+add follow (post )http://localhost:5000/api/vacations/addfollow'
+ delete follow http://localhost:5000/api/vacations/delfollow'
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

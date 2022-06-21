@@ -39,5 +39,5 @@ app.listen(generalSetting.port, () => {
 });
 
 server.listen(generalSetting.socketServerPort, () => {
-  console.log("SERVER IS RUNNING");
+  console.log("mysql IS RUNNING");
 });
